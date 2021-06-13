@@ -1,0 +1,47 @@
+.card {
+  box-shadow: 0 4px 8px 0 #002147;
+  transition: 0.3s;
+  width: 25vw;
+  margin: 1%;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 #002147;
+}
+
+.container {
+  padding: 2px 16px;
+}
+
+.subTitle {
+  font-size: 1.5em;
+  text-align: center;
+  font-weight: 800;
+}
+
+.text {
+  font-size: 1em;
+  text-align: center;
+  font-weight: 800;
+}
+
+.icon {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+}
+.title {
+  font-size: 2.5em;
+  text-align: center;
+}
+
+@media only screen and (max-width: 900px) {
+  .card {
+    box-shadow: 0 4px 8px 0 #002147;
+    transition: 0.3s;
+    width: 100%;
+    margin-left: 1%;
+    margin-right: 1%;
+  }
+}

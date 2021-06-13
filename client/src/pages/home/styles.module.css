@@ -1,0 +1,41 @@
+form {
+  margin: 0 0 40px 10px;
+}
+
+.buttonContainer {
+  margin-top: 20px;
+  width: 5vw;
+  height: 3vh;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.textField {
+  width: 20vw;
+}
+
+@media only screen and (max-width: 900px) {
+  .card {
+    box-shadow: 0 4px 8px 0 #002147;
+    transition: 0.3s;
+    width: 100%;
+    margin-left: 1%;
+    margin-right: 1%;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .card {
+    box-shadow: 0 4px 8px 0 #002147;
+    transition: 0.3s;
+    width: 100%;
+    margin-left: 1%;
+    margin-right: 1%;
+  }
+  .textField {
+    width: 90vw;
+  }
+}

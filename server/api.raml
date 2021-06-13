@@ -1,0 +1,94 @@
+#%RAML 1.0
+title: Fullstack Challenge True North
+description: Technical Challenge Fullstack Developer - True North 
+mediaType: application/json
+
+/task:
+  description: Task entity
+  get:
+    description: Get a list of task. 
+    queryParameters:
+      limit:
+        description: "The desired page size. If it is 0 or undefined, it's 3 by default"
+        required: false
+        type: number
+        example: 10
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              [{id: '641ec9a4-3bef-4114-9936-2ef2434b2d36',
+              task: 'Go for a walk with my dog.',
+              isCompleted: false
+              },
+              {id: '641ec9a4-3bef-4114-9936-2ef2434b2d26',
+              task: 'Buy milk.',
+              isCompleted: true
+              }]
+      404:
+        body:
+          application/json:
+            example: |
+              {"message": "tasks not found"}
+      400:
+        body:
+          application/json:
+            example: |
+              {"message": "Error"}
+  /{_id}:
+    description: Task entity
+    get:
+      description: Get the task with `_id = {_id}`. 
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {id: '641ec9a4-3bef-4114-9936-2ef2434b2d36',
+                task: 'Go for a walk with my dog',
+                isCompleted: false
+                }
+        404:
+          body:
+            application/json:
+              example: |
+                {"message": "task not found"}
+        400:
+          body:
+            application/json:
+              example: |
+                {"message": "Error"}
+    patch:
+      description: Update a task state
+      bodyParameters: 
+        isCompleted:
+          displayName: isCompleted
+          type: boolean
+          description: "Define if the task is completed"
+          example: true
+          required: true
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {id: '641ec9a4-3bef-4114-9936-2ef2434b2d36',
+                task: 'Buy milk',
+                isCompleted: true,
+                }
+        400:
+          body:
+            application/json:
+              example: |
+                {"message": "Bad Request. No parameters to update."}
+        404:
+          body:
+            application/json:
+              example: |
+                {"message": "Task not found"}  
+        500:
+          body:
+            application/json:
+              example: |
+                {"message": "Server Error"} 
