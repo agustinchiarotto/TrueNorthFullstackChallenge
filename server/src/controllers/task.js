@@ -1,58 +1,59 @@
 const Task = require('../models/task');
 
 const createTask = async ({ task, isCompleted }) => {
-  let newTask = new Task({
-    task,
-    isCompleted
-  });
-  return newTask
-    .save()
-    .then((result) => result)
-    .catch((error) => {
-      return { message: `There was an error saving a new task: ${error}` };
+  try {
+    let newTask = new Task({
+      task,
+      isCompleted,
     });
+    return newTask.save();
+  } catch (error) {
+    return { message: `There was an error saving a new task: ${error}` };
+  }
 };
 
 const createManyTaks = async ({ tasks }) => {
-  const res = await Task.insertMany(tasks)
-    .catch((error) => {
-      return { message: `There was an error saving a new task: ${error}` };;
-    })
-  return res
-}
+  try {
+    return Task.insertMany(tasks);
+  } catch (error) {
+    return { message: `There was an error saving a new task: ${error}` };
+  }
+};
 
 const deleteTaskById = async ({ _id }) => {
   try {
     const taskToUpdate = await Task.findOne({ _id }).catch((err) => err);
     if (taskToUpdate) {
-      return await taskToUpdate.remove();
+      return taskToUpdate.remove();
     } else {
       return null;
     }
   } catch (error) {
-    return error;
+    return { message: `There was an error deleting a task: ${error}` };
   }
 };
 
 const getTasks = async ({ limit }) => {
-  const result = await Task.find()
-    .limit(limit)
-    .catch(() => {
-      return { message: 'Error', status: 500 };
-    });
-  return result;
-}
-
+  try {
+    return Task.find().limit(limit);
+  } catch (error) {
+    return { message: `There was an error searching tasks: ${error}` };
+  }
+};
 
 const updateTask = async ({ isCompleted }, { _id }) => {
-  let taskFound = await Task.findById({ _id });
-  if (taskFound) {
-    taskFound.isCompleted = isCompleted;
-    result = await taskFound.save();
-  } else {
-    result = { message: 'Task not found', status: 404 };
+  try {
+    let taskFound = await Task.findById({ _id });
+    if (taskFound) {
+      taskFound.isCompleted = isCompleted;
+      result = await taskFound.save();
+    } else {
+      result = { message: 'Task not found' };
+    }
+    return result;
+  } catch (error) {
+    result = { message: `There was an error updating a taks: ${error}` };
   }
-  return result;
 };
 
 // Validations
@@ -70,7 +71,6 @@ const validateCreateBody = (req, res, next) => {
     res.status(400).json({ title: 'Error creating new task', errorMsg });
   }
 };
-
 
 const validateUpdateBody = (req, res, next) => {
   if (req.body.isCompleted !== null && req.params._id) {
@@ -92,6 +92,5 @@ module.exports = {
   updateTask,
 
   validateCreateBody,
-  validateUpdateBody
-
+  validateUpdateBody,
 };

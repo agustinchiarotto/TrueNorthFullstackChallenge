@@ -25,8 +25,6 @@ app.get('/', (req, res) => {
 });
 app.use(express.json());
 
-
-
 app.listen(api_port || 4000, api_hostname, () => {
   console.log(`Server running in ${environment} mode at http://${api_hostname}:${api_port}/`);
   console.log('Listening on ', api_port || 4000);

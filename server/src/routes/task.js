@@ -3,6 +3,7 @@ const app = express.Router();
 
 const taskController = require('../controllers/task');
 const { internalError } = require('../helper/error');
+const { successResponse } = require('../helper/apiResponses.js');
 const { getTasksFromExternalAPI } = require('../utils/hipsumAPI');
 
 app.get('/', async (req, res) => {
@@ -13,20 +14,20 @@ app.get('/', async (req, res) => {
     tasks = tasks.concat(newTasks);
     const saveResult = await taskController.createManyTaks({ tasks: newTasks });
     if (saveResult.message) {
-      return internalError(res, saveResult.message)
+      return internalError(res, saveResult.message);
     }
     tasks = await taskController.getTasks({ limit });
   }
   if (tasks) {
-    return res.status(200).json(tasks);
+    return successResponse(tasks, res);
   }
-  return internalError(res, 'Error searching tasks')
+  return internalError(res, tasks.message || 'Error searching tasks');
 });
 
 app.patch('/:_id', taskController.validateUpdateBody, async (req, res) => {
   const result = await taskController.updateTask(req.body, req.params);
   if (!result.message) {
-    return res.status(200).json(result);
+    return successResponse(result, res);
   } else {
     return res.status(result.status).json({
       title: 'Error on update!',

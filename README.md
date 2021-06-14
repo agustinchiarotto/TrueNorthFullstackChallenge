@@ -25,7 +25,7 @@ This challenge is solved principally with ReactJs, NodeJs, Express and Mongoose.
   - [**NodeJS & NPM**](https://nodejs.org/en/download/package-manager/) -[**MongoDb**](https://docs.mongodb.com/manual/administration/install-community/)
 - Run command `npm i` on the same route as package.json file. Remember that you need to do it on both folders: Client and server.
 - If you are ussing nvm (node version manager), run `nvm use`. You need at least version v14.15.0 to run this app.
-- Be sure that MongoDB service is runing. If is not, run this comand:`systemctl enable mongodb.service`
+- Be sure that MongoDB service is runing. If is not, run this comand:`sudo systemctl start mongod`
 
 ---
 
