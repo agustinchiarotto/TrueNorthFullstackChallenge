@@ -26,7 +26,7 @@ const Home = () => {
     const result = await updateTaskByIdService({ id, isCompleted });
     if (result.success) {
       let auxTask = tasks.slice(0);
-      const index = auxTask.findIndex((task) => task._id === id);
+      const index = auxTask.findIndex((task: { _id: string }) => task._id === id);
       auxTask[index] = result.payload;
       setTasks(auxTask);
     } else {
