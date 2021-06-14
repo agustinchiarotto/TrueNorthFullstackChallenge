@@ -25,17 +25,14 @@ const Home = () => {
   const updateTaskHandler = async (id: string, isCompleted: boolean) => {
     const result = await updateTaskByIdService({ id, isCompleted });
     if (result.success) {
-      let auxTask = tasks;
+      let auxTask = tasks.slice(0);
       const index = auxTask.findIndex((task) => task._id === id);
       auxTask[index] = result.payload;
-      console.log(auxTask);
       setTasks(auxTask);
     } else {
       alert('Error on updating task state: ');
     }
   };
-
-  console.log('rendering...');
 
   useEffect(() => {
     const fetchTask = async () => {
@@ -50,7 +47,7 @@ const Home = () => {
     setNumberOfTask(event.target.value);
   };
 
-  if (isLoading) {
+  if (isLoading || !tasks) {
     return <LoadingSpinner />;
   }
   return (
