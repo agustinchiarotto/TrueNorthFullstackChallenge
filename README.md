@@ -15,7 +15,7 @@ The objective of this code is to respond to the functionality presented in the T
 ---
 
 **Technologies**
-This challenge is solved principally with ReactJs - NodeJs, Express and Mongoose. Besides that, it uses Jest for testing. It also has different config files for globally set the prettier configuration for all the project and the node version needed to run this server.
+This challenge is solved principally with ReactJs, NodeJs, Express and Mongoose. Besides that, it uses Jest for testing. It also has different config files for globally set the prettier configuration for all the project and the node version needed to run this server.
 
 ---
 
@@ -26,24 +26,23 @@ This challenge is solved principally with ReactJs - NodeJs, Express and Mongoose
 - Run command `npm i` on the same route as package.json file. Remember that you need to do it on both folders: Client and server.
 - If you are ussing nvm (node version manager), run `nvm use`. You need at least version v14.15.0 to run this app.
 - Be sure that MongoDB service is runing. If is not, run this comand:`systemctl enable mongodb.service`
-- You can use Docker
 
 ---
 
 **Docker**
 
-THe applications are ready to run in dockers containers.
+The applications are ready to run in dockers containers.
 
 - Web App:
 
   - Navigate to client's folder `cd client`
-  - Build the image: `docker build -t task-client`
-  - Run the image: `docker run --name task-client -p 3000`
+  - Build the image: `docker build -t task-client:latest .`
+  - Run the image: `docker run --name task-client -p 3000 -d task-client:latest`
 
 - Server App:
   - Navigate to server's folder `cd server`
-  - Build the image: `docker build -t task-server`
-  - Run the image: `docker run --name task-sever -p 4000`
+  - Build the image: `docker build -t task-server:latest .`
+  - Run the image: `docker run --name task-sever -p 4000 -d task-server:latest`
 
 ---
 
@@ -55,7 +54,7 @@ There are some environment variables you can change:
 
 - **NODE_ENV:** sets the environment you are working on (default: development).
 - **API_HOSTNAME:** sets the API's hostname (default: 127.0.0.1)
-- **API_PORT:** sets the API's port (default: 3000).
+- **API_PORT:** sets the API's port (default: 4000).
 - **DB_HOSTNAME:** sets the database hostname (default: 127.0.0.1).
 - **DB_PORT:** sets the database port (default: 27017).
 
@@ -64,7 +63,7 @@ There are some environment variables you can change:
 - To start running the web-app use the comand: `npm start` on client folder. From this point the web-app is ready to be used on http://localhost:3000 or http://192.168.0.175:3000 on your Network.
 
 - **ENVIROMENT:** sets the environment you are working on (default: development).
-- **API_URL:** sets the API's hostname (default: 'http://localhost:4000')
+- **API_URL:** sets the API's hostname (default: 'http://localhost:3000')
 
 ---
 
