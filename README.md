@@ -10,7 +10,7 @@ Linkedin: https://www.linkedin.com/in/agustinchiarotto/
 [![Generic badge](https://img.shields.io/badge/mongodb-v4.4.3-green.svg)](https://shields.io/)
 
 **Objective**
-The objective of this code is to respond to the functionality presented in the True North Fullstack challenge. For this propuse it has two parts: Client and Server. Server has different endpoints detailed in the api.html file, that you can access on http://localhost:4000 by default.
+The objective of this code is to respond to the functionality presented in the True North Fullstack challenge. For this purpose it has two parts: Client and Server. Server has different endpoints detailed in the api.html file, that you can access on http://localhost:4000 by default.
 
 ---
 
