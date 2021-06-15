@@ -63,7 +63,7 @@ There are some environment variables you can change:
 - To start running the web-app use the comand: `npm start` on client folder. From this point the web-app is ready to be used on http://localhost:3000 or http://192.168.0.175:3000 on your Network.
 
 - **ENVIROMENT:** sets the environment you are working on (default: development).
-- **API_URL:** sets the API's hostname (default: 'http://localhost:3000')
+- **API_URL:** sets the API's hostname (default: 'http://localhost:4000')
 
 ---
 
